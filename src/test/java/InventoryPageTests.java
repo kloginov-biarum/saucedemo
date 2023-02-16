@@ -1,5 +1,8 @@
 import org.junit.Test;
 
+import static net.bytebuddy.matcher.ElementMatchers.is;
+import static org.hamcrest.MatcherAssert.assertThat;
+
 public class InventoryPageTests extends TestBase{
     public void amountOfProducts(){
         User user = new User(validUsername, validPassword);
@@ -26,6 +29,7 @@ public class InventoryPageTests extends TestBase{
         inventoryPage.aboutIsDisplayed();
         inventoryPage.logoutIsDisplayed();
         inventoryPage.resetAppStateIsDisplayed();
+
     }
 
 

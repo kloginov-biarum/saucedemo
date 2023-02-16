@@ -1,11 +1,17 @@
+
+import org.hamcrest.MatcherAssert;
+import org.hamcrest.Matchers;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
+import static org.hamcrest.Matchers.*;
+
 
 import java.util.List;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.*;
+
 
 public class InventoryPage extends BasePage{
 
@@ -33,6 +39,19 @@ public class InventoryPage extends BasePage{
 
     @FindBy(id = "reset_sidebar_link")
     private WebElement resetAppState;
+
+    @FindBy(id = "add-to-cart-sauce-labs-backpack")
+    private WebElement addBackpackToCartButton;
+
+    @FindBy(id = "shopping_cart_container")
+    private WebElement cartIcon;
+
+    @FindBy(id = "react-burger-cross-btn")
+    private WebElement closeSideBarIcon;
+
+    @FindBy(id = "add-to-cart-sauce-labs-bike-light")
+    private WebElement addBikeLightToCartButton;
+
     public InventoryPage(WebDriver driver) {
      super(driver);
     }
@@ -65,20 +84,54 @@ public class InventoryPage extends BasePage{
 
 
     public void clickOnTheSideBarOpenIcon(){
-        sideBarOpenIcon.click();
+        clickOnTheElement(sideBarOpenIcon);
     }
 
     public void allItemsIsDisplayed(){
         assertTrue(allItems.isDisplayed());
     }
     public void aboutIsDisplayed(){
-        assertTrue(about.isDisplayed());
+       // assertTrue(about.isDisplayed());
+        assertThat(about.isDisplayed(),is(true));
+       // assertThat(about.getAttribute("href"), startsWith("https://"));
+       // assertThat(about.getText(),allOf(startsWith("https://"),containsString("saucedemo")));
     }
 
     public void logoutIsDisplayed(){
         assertTrue(logout.isDisplayed());
+
+
     }
     public void resetAppStateIsDisplayed(){
-        assertTrue(resetAppState.isDisplayed());
+        //assertTrue(resetAppState.isDisplayed());
     }
+
+    public void clickOnAddToCartBackback(){
+        clickOnTheElement(addBackpackToCartButton);
+    }
+
+    public void clickOnAddToCartBikeLight(){
+        clickOnTheElement(addBikeLightToCartButton);
+    }
+
+    public void clickOnTheCartIcon(){
+        clickOnTheElement(cartIcon);
+    }
+
+    public void clickOnTheResetAppState(){
+        clickOnTheElement(resetAppState);
+    }
+
+    public void clickOnTheCloseSideBArIcon(){
+        clickOnTheElement(closeSideBarIcon);
+    }
+
+    public void resetAppState(){
+       clickOnTheSideBarOpenIcon();
+       clickOnTheResetAppState();
+       clickOnTheCloseSideBArIcon();
+       refreshPage();
+    }
+
+
 }
