@@ -79,7 +79,7 @@
                 <version>2.22.2</version>
                 <configuration>
                     <includes>
-                      <!--  <include>**/CartPageTests.java</include>-->
+                        <include>**/CartPageTests.java</include>
                     </includes>
                     <excludes>
                         <exclude>InventoryPageTests.java</exclude>
